@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ResponseFormatter;
 use App\Models\Produk;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -13,7 +14,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all(); // Mengambil semua data order, sesuaikan dengan kebutuhan
+        
+        try{
+            $orders = Order::all();
+            return ResponseFormatter::success(200,'Data Berhasil Didapatkan', $orders);
+        } catch (\Throwable $th) {
+            return ResponseFormatter::error(400, $th->getMessage());
+        }
+    
+         // Mengambil semua data order, sesuaikan dengan kebutuhan
         return view("order.index", compact('orders'));
     }
 

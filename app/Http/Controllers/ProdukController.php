@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ResponseFormatter;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,13 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $produks = Produk::orderBy('produk', 'ASC')->simplePaginate(5);
+        try{
+            $produks = Produk::orderBy('produk', 'ASC')->simplePaginate(5);
+            return ResponseFormatter::success(200,'Data Berhasil Didapatkan', $produks);
+        } catch (\Throwable $th) {
+            return ResponseFormatter::error(400, $th->getMessage());
+        }
+    
 
         return view("produk.index", compact('produks'));
     }
