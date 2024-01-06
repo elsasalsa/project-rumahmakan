@@ -12,7 +12,21 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
+    {
+        
+        $orders = Order::all();
+        $query = $request->input('query');
+
+        $orders = Order::when($query, function ($query) use ($request) {
+            return $query->orWhereDate('created_at', '=', $request->input('query'));
+        })
+        ->get();
+    
+         // Mengambil semua data order, sesuaikan dengan kebutuhan
+        return view("order.index", compact('orders'));
+    }
+    public function api()
     {
         
         try{
@@ -84,9 +98,7 @@ class OrderController extends Controller
 
         return redirect()->route('order.index')->with('success', 'Berhasil menambahkan data!');
     }
-
-
-
+    
 
     /**
      * Display the specified resource.

@@ -13,6 +13,13 @@ class ProdukController extends Controller
      */
     public function index()
     {
+        
+        $produks = Produk::orderBy('produk', 'ASC')->simplePaginate(5);
+
+        return view("produk.index", compact('produks'));
+    }
+    public function api()
+    {
         try{
             $produks = Produk::orderBy('produk', 'ASC')->simplePaginate(5);
             return ResponseFormatter::success(200,'Data Berhasil Didapatkan', $produks);

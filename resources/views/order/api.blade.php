@@ -1,15 +1,13 @@
 @extends('layouts.template')
 
 @section('content')
-
-    <div class="my-5 d-flex justify-content-end" >
-        
-        <form action="{{ route('order.index') }}" style="margin-top:70px;" method="GET" >
-            
-            <input type="date" name="query" placeholder="Cari...">
-            <button type="submit" class="btn btn-info" >Cari</button>
-            <a href="{{ route('order.index') }}" class="btn btn-secondary">Clear</a>  
-            <a href="{{route('order.api')}}"><button class="btn btn-danger">Cek API</button></a>
+<div class="mt-3">
+    <div class="my-5 d-flex justify-content-end">
+        <form action="{{ route('order.index') }}" method="GET" >
+            {{-- <input type="date" name="query" placeholder="Cari...">
+            <button type="submit" class="btn btn-info" ><ion-icon name="search-outline"></ion-icon></button>
+            <a href="{{ route('kasir.order.index') }}" class="btn btn-secondary"><ion-icon name="refresh-outline"></ion-icon></a>  
+            <a href="{{ route('kasir.order.create') }}" class="btn btn-primary" ><ion-icon name="add-outline"></ion-icon></a> --}}
         </form>
         
     </div>

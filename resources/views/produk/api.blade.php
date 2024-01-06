@@ -4,7 +4,6 @@
 
 <div class="main" style="margin-top: 120px;">
 <a href="{{ route('produk.create') }}"><button class="btn btn-secondary">Tambah Produk</button></a>
-<a href="{{ route('produk.api')}}"><button class="btn btn-danger">Cek API</button></a>
     <table class="table table-hover" style="margin: 10px 0 5px;">
         <thead>
             <tr class="table-success table-bordered table-striped">
